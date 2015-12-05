@@ -5,11 +5,7 @@
   }
 
   function AppCtrl($scope, AnswerSheet) {
-    $scope.chooseRightAnswer = function() { AnswerSheet.chooseRightAnswer(); };
-    $scope.chooseWrongAnswer = function() { AnswerSheet.chooseWrongAnswer(); };
-
-    $scope.rightAnswersTally = function() { return AnswerSheet.rightAnswersTally; };
-    $scope.wrongAnswersTally = function() { return AnswerSheet.wrongAnswersTally; };
+    $scope.answers = AnswerSheet;
   }
 
   angular.module('app', ['ngRoute'])
