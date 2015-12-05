@@ -1,23 +1,5 @@
 (function(){
 
-  function AnswerSheetService() {
-    this.rightAnswersTally = 0;
-    this.wrongAnswersTally = 0;
-
-    function chooseRightAnswer() {
-      this.rightAnswersTally++;
-    }
-
-    function chooseWrongAnswer() {
-      this.wrongAnswersTally++;
-    }
-
-    this.chooseWrongAnswer = chooseWrongAnswer;
-    this.chooseRightAnswer = chooseRightAnswer;
-
-    return this;
-  }
-
   function IntroCtrl($templateCache) {
     this.user = {name: 'Blake'};
   }
