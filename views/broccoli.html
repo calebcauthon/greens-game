@@ -1,5 +1,5 @@
 What is this? <img src="broccoli.jpeg" />
 
 <div ng-repeat="choice in question.choices">
-  <button ng-click="chooseAnswer(choice)">{{choice.text}}</button>
+  <button ng-click="chooseAnswer(choice.text, question)">{{choice.text}}</button>
 </div>

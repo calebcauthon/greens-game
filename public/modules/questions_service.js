@@ -1,29 +1,31 @@
 function QuestionService() {
-  var questions = [];
-  questions.push({
-    choices: [
-      { text: 'Broccoli*', isCorrect: true },
-      { text: 'Carrots', isCorrect: true },
-      { text: 'Potatoes', isCorrect: true },
-      { text: 'Peas', isCorrect: true }
-    ],
-    templateUrl: 'question/broccoli.html'
-  });
+  
+  this.addQuestion = function(templateUrl, choices) {
+    var question = new Question();
+    question.choices = choices;
+    question.templateUrl = templateUrl;
 
-  questions.push({
-    text: "What is this? [image of carrots]",
-    choices: [
-      { text: 'Broccoli', isCorrect: true },
-      { text: 'Carrots*', isCorrect: true },
-      { text: 'Potatoes', isCorrect: true },
-      { text: 'Peas', isCorrect: true }
-    ],
-    templateUrl: 'question/carrots.html'
-  });
+    questions.push(question);
+  }
 
   this.get = function(index) {
     return questions[index];
   };
+
+  var questions = [];
+  this.addQuestion('question/broccoli.html', [
+    { text: 'Broccoli*', isCorrect: true },
+    { text: 'Carrots' },
+    { text: 'Potatoes' },
+    { text: 'Peas' }
+  ]);
+
+  this.addQuestion('question/carrots.html', [
+    { text: 'Broccoli' },
+    { text: 'Carrots*', isCorrect: true },
+    { text: 'Potatoes' },
+    { text: 'Peas' }
+  ]);
 
   return this;
 }

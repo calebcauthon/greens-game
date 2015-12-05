@@ -6,15 +6,16 @@
 
   function AppCtrl($scope, $location, $routeParams, AnswerSheet, Questions) {
     $scope.answers = AnswerSheet;
+    var question_index = $routeParams['question_index'] - 1;
 
-    $scope.question = Questions.get($routeParams['question_index'] - 1);
+    $scope.question = Questions.get(question_index);
 
     if(!$scope.question)
       $location.path("score");
 
-    $scope.chooseAnswer = function(choice, question) {
-      AnswerSheet.choose(choice, question);
-      $location.path("question/" + AnswerSheet.nextQuestionIndex())
+    $scope.chooseAnswer = function(choice_text, question) {
+      AnswerSheet.choose(choice_text, question);
+      $location.path("question/" + (2 + question_index));
     };
   }
 
