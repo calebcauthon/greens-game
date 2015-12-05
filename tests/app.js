@@ -26,15 +26,20 @@ describe("Question", function() {
 });
 
 describe("AnswerSheetService", function() {
+  
   [1,8,12].map(function(thisNumber) {
 
     it("increments the right answer tally by 1", function() {
       var service = AnswerSheetService();
+      var question = {}; // mock question
+      var rightAnswer = {};
+
+      question.rightAnswer = function() { return rightAnswer; };
 
       expect(service.rightAnswersTally).toBe(0);
 
       for(var i = 0; i < thisNumber; i++) {
-        service.chooseRightAnswer();
+        service.choose(rightAnswer, question);
       }
 
       expect(service.rightAnswersTally).toBe(thisNumber);
@@ -46,11 +51,14 @@ describe("AnswerSheetService", function() {
 
     it("increments the wrong answer tally by 1", function() {
       var service = AnswerSheetService();
+      var question = {}; // mock question
+      
+      question.rightAnswer = function() { return {}; };
 
       expect(service.wrongAnswersTally).toBe(0);
 
       for(var i = 0; i < thisNumber; i++) {
-        service.chooseWrongAnswer();
+        service.choose({}, question);
       }
 
       expect(service.wrongAnswersTally).toBe(thisNumber);

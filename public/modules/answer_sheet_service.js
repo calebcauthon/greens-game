@@ -10,12 +10,8 @@ function AnswerSheetService() {
   this.rightAnswersTally = 0;
   this.wrongAnswersTally = 0;
 
-  this.nextQuestionIndex = function() {
-    return this.rightAnswersTally + this.wrongAnswersTally + 1;
-  }
-
-  this.choose = function(question, choice) {
-    if(question.rightAnswer() == choice) {
+  this.choose = function(choice_text, question) {
+    if(question.rightAnswer() == choice_text) {
       this.chooseRightAnswer();
     } else {
       this.chooseWrongAnswer();
