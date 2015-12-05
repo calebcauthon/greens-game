@@ -3,7 +3,12 @@ describe("FirebaseService", function() {
     var mock_ref;
 
     it('pushes data', function() {
-      mock_ref = jasmine.createSpyObj('ref', ['push', 'init']);
+      var promise = { then: function() {} };
+
+      mock_ref = { push: function() {}, init: function() {}};
+      spyOn(mock_ref, "push").and.returnValue(promise);
+      spyOn(mock_ref, "init");
+      
       var data = {};
 
       var service = FirebaseService(mock_ref);
@@ -13,7 +18,7 @@ describe("FirebaseService", function() {
     });
 
     it("returns the promise that the ref returns", function() {
-      var promise = {};
+      var promise = { then: function() {} };
 
       mock_ref = { push: function() {}, init: function() {}};
       spyOn(mock_ref, "push").and.returnValue(promise);
@@ -21,7 +26,26 @@ describe("FirebaseService", function() {
 
       var service = FirebaseService(mock_ref);
       expect(service.createUser({})).toBe(promise);
-    })
+    });
+
+    it('attaches the resulting promises value to the passed in user obj', function() {
+      var user_ref = {};
+      var promise = { 
+        then: function(okFn, notOkFn) {
+          okFn(user_ref);
+        }
+      };
+      var user = {};
+
+      mock_ref = { push: function() {}, init: function() {}};
+      spyOn(mock_ref, "push").and.returnValue(promise);
+      spyOn(mock_ref, "init");
+
+      var service = FirebaseService(mock_ref);
+      service.createUser(user);
+
+      expect(user.ref).toBe(user_ref);
+    });
   });
 });
 

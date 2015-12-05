@@ -2,15 +2,13 @@ function FirebaseService(firebaseRef) {
   firebaseRef.init("https://greens-game.firebaseio.com");
 
   this.createUser = function(user) {
-    return firebaseRef.push(user);
-    /*var promise = firebaseRef.push(user);
+    var promise = firebaseRef.push(user);
   
     promise.then(function(ref) {
-      if(!user.ref)
-        user.ref = ref;  
+      user.ref = ref;  
     });
 
-    return promise;*/
+    return promise;
   };
 
   this.updateUser = function(user, answers) {
