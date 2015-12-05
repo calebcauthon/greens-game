@@ -1,12 +1,13 @@
 function FirebaseService(firebaseRef) {
   firebaseRef.init("https://greens-game.firebaseio.com");
 
+  function attachRef(ref) {
+    this.ref = ref;
+  }
+  
   this.createUser = function(user) {
     var promise = firebaseRef.push(user);
-  
-    promise.then(function(ref) {
-      user.ref = ref;  
-    });
+    promise.then(attachRef.bind(user));
 
     return promise;
   };
