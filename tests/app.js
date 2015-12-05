@@ -11,6 +11,17 @@ describe("FirebaseService", function() {
       
       expect(mock_ref.push).toHaveBeenCalledWith(data);
     });
+
+    it("returns the promise that the ref returns", function() {
+      var promise = {};
+
+      mock_ref = { push: function() {}, init: function() {}};
+      spyOn(mock_ref, "push").and.returnValue(promise);
+      spyOn(mock_ref, "init");
+
+      var service = FirebaseService(mock_ref);
+      expect(service.createUser({})).toBe(promise);
+    })
   });
 });
 

@@ -2,7 +2,7 @@ function FirebaseService(firebaseRef) {
   firebaseRef.init("https://greens-game.firebaseio.com");
 
   this.createUser = function(user) {
-    firebaseRef.push(user);
+    return firebaseRef.push(user);
     /*var promise = firebaseRef.push(user);
   
     promise.then(function(ref) {
