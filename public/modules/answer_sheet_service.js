@@ -1,6 +1,6 @@
 function AnswerSheetService() {
   this.chooseRightAnswer = function() {
-    this.rightAnswersTally = 2;
+    this.rightAnswersTally++;
   };
 
   this.rightAnswersTally = 0;
