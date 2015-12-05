@@ -1,12 +1,13 @@
 (function(){
 
-  function IntroCtrl($templateCache) {
-    this.user = {name: 'Blake'};
+  function IntroCtrl($scope, $templateCache, User) {
+    $scope.user = User;
   }
 
-  function AppCtrl($scope, $location, $routeParams, AnswerSheet, Questions) {
+  function AppCtrl($scope, $location, $routeParams, AnswerSheet, Questions, User) {
     $scope.answers = AnswerSheet;
-  
+    $scope.user = User;
+    
     var question_index = $routeParams['question_index'] - 1;
 
     $scope.question = Questions.get(question_index);
@@ -39,5 +40,6 @@
 
   .service('AnswerSheet', AnswerSheetService)
   .service('Questions', QuestionService)
+  .service('User', UserService)
 
 })()

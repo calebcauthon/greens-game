@@ -1,1 +1,8 @@
 <div ng-include="question.templateUrl"></div>
+
+<div>
+  {{user.name}}'s Previous Answers:
+  <ul>
+    <li ng-repeat="answer in answers.getAllAnswers()">{{ answer.text }}</li>
+  </ul>
+</div>
