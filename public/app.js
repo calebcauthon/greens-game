@@ -6,6 +6,21 @@
 
   function AppCtrl($scope, $location, $routeParams, AnswerSheet, Questions) {
     $scope.answers = AnswerSheet;
+  
+    Questions.addQuestion('question/broccoli.html', [
+      { text: 'Broccoli*', isCorrect: true },
+      { text: 'Carrots' },
+      { text: 'Potatoes' },
+      { text: 'Peas' }
+    ]);
+
+    Questions.addQuestion('question/carrots.html', [
+      { text: 'Broccoli' },
+      { text: 'Carrots*', isCorrect: true },
+      { text: 'Potatoes' },
+      { text: 'Peas' }
+    ]);
+
     var question_index = $routeParams['question_index'] - 1;
 
     $scope.question = Questions.get(question_index);
