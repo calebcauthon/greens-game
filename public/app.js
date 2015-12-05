@@ -41,5 +41,8 @@
   .service('AnswerSheet', AnswerSheetService)
   .service('Questions', QuestionService)
   .service('User', UserService)
+  .service('Firebase', FirebaseService)
+
+  .factory('firebaseAsyncToQ', firebaseAsyncToQ);
 
 })()

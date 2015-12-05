@@ -1,3 +1,52 @@
+describe("firebaseAsyncToQ", function() {
+  it('exists', function() {
+    expect(firebaseAsyncToQ).toBeDefined();
+  });
+
+  it('returns a .then(yes, no) if async_fn returns an ok response', function() {
+    var mock_q = function(fn) {
+      var result;
+      var resolveOk = false;
+
+      var resolve = function(value) { 
+        result = value; 
+        resolveOk = true;
+      };
+      var reject = function(value) { 
+        result = value; 
+        resolveOk = false;
+      };
+
+      fn(resolve, reject);
+
+      return {
+        then: function(fnOk, fnNotOk) {
+          if(resolveOk)
+            fnOk(result);
+          else
+            fnNotOk(result);
+        }
+      }
+    }
+
+    var isOK = false;
+    var isNotOK = false;
+
+    var factoryFn = firebaseAsyncToQ(mock_q);
+
+    var callback = function() { isOK = true; };
+    var firebase_style_async_fn = function(fn) {
+      var err = false;
+      fn(err);
+    };
+
+    factoryFn(firebase_style_async_fn).then(callback, function() {});
+
+    expect(isOK).toBe(true);
+  })
+
+});
+
 describe("Question", function() {
   it('has a .rightAnswer()', function() {
     var q = new Question();
