@@ -1,3 +1,15 @@
+describe("firebaseRef", function() {
+  var factoryFn = firebaseRef();
+
+  it("has init fn", function() {
+    expect(factoryFn.init).toBeDefined();
+  });
+
+  it("has push", function() {
+    expect(factoryFn.push).toBeDefined();
+  });
+});
+
 describe("firebaseAsyncToQ", function() {
   it('exists', function() {
     expect(firebaseAsyncToQ).toBeDefined();
