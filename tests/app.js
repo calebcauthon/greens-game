@@ -1,3 +1,19 @@
+describe("FirebaseService", function() {
+  describe("createUser", function() {
+    var mock_ref;
+
+    it('pushes data', function() {
+      mock_ref = jasmine.createSpyObj('ref', ['push', 'init']);
+      var data = {};
+
+      var service = FirebaseService(mock_ref);
+      service.createUser(data);
+      
+      expect(mock_ref.push).toHaveBeenCalledWith(data);
+    });
+  });
+});
+
 describe("firebaseRef", function() {
   var factoryFn = firebaseRef();
 
