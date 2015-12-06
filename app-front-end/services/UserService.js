@@ -17,7 +17,7 @@ function UserService(firebaseRef) {
   };
 
   self.load = function(username) {
-    return firebaseRef.find();//('username', username)
+    return firebaseRef.find(username);
   };
 
   self.create = function() {

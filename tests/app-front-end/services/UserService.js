@@ -17,6 +17,19 @@ describe("UserService", function() {
   });
 
   describe("load", function() {
+    it("passes in the username into .find", function() {
+      var ref = { 
+        find: function() { return basic_promise; } 
+      };
+      spyOn(ref, 'find');
+      
+      var user = new UserService(ref);
+      var data = {};
+      user.load(data);
+
+      expect(ref.find).toHaveBeenCalledWith(data);
+    });
+
     it("returns the .find promise", function() {
       var ref = { 
         find: function() { return basic_promise; } 
