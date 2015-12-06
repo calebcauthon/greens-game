@@ -20,12 +20,6 @@ function UserService(firebaseRef) {
     });
 
     return promise;
-    /*var promise = firebaseRef.push(user);
-    promise.then(function(ref) {
-      ref = ref;
-    });
-
-    return promise;*/
   };
 
   self.update = function() {

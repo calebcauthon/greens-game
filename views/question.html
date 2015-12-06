@@ -1,7 +1,7 @@
 <div ng-include="question.templateUrl"></div>
 
 <div>
-  {{user.name}}'s Previous Answers:
+  {{username}}'s Previous Answers:
   <ul>
     <li ng-repeat="answer in answers.getAllAnswers() track by $index">{{ answer.text }}</li>
   </ul>

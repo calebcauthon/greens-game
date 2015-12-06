@@ -15,10 +15,10 @@ var dependencies = [
 define(dependencies, function () {
     (function(){
       function IntroCtrl($scope, $templateCache, User) {
-        $scope.user = User.user;
+        $scope.$watch('username', User.set.bind(User, 'username'));
 
         $scope.startQuiz = function() {
-          $scope.user.create();
+          User.create();
         };
       }
 
