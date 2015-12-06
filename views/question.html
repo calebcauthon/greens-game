@@ -3,6 +3,6 @@
 <div>
   {{user.name}}'s Previous Answers:
   <ul>
-    <li ng-repeat="answer in answers.getAllAnswers()">{{ answer.text }}</li>
+    <li ng-repeat="answer in answers.getAllAnswers() track by $index">{{ answer.text }}</li>
   </ul>
 </div>

@@ -8,7 +8,7 @@ describe("FirebaseService", function() {
       mock_ref = { push: function() {}, init: function() {}};
       spyOn(mock_ref, "push").and.returnValue(promise);
       spyOn(mock_ref, "init");
-      
+
       var data = {};
 
       var service = FirebaseService(mock_ref);
@@ -52,8 +52,8 @@ describe("FirebaseService", function() {
 describe("firebaseRef", function() {
   var factoryFn = firebaseRef();
 
-  it("has init fn", function() {
-    expect(factoryFn.init).toBeDefined();
+  it("has connect fn", function() {
+    expect(factoryFn.connect).toBeDefined();
   });
 
   it("has push", function() {

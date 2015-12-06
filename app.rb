@@ -19,3 +19,7 @@ end
 get '/question/:view.html' do
   send_file "views/#{params[:view]}.html"
 end
+
+get '/scripts/*.js' do |path|
+  send_file "app-front-end/#{path}.js"
+end
