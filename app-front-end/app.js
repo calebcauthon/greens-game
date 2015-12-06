@@ -1,7 +1,7 @@
 var dependencies = [
   'require',
   './controllers/AppCtrl',
-  './controllers/UserService',
+  './services/UserService',
   './services/QuestionService',
   './services/AnswerSheetService',
   './models/Question',
