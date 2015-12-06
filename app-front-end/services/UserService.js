@@ -29,9 +29,7 @@ function UserService(firebaseRef) {
   };
 
   self.update = function() {
-    ref.update(user);
-    /*var userData = angular.extend({}, self.user, { answers: answers, ref: false });
-    FirebaseService.updateUser(self.user, answers);*/
+    return ref.update(user);
   };
 
   return self;

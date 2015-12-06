@@ -1,9 +1,19 @@
 describe("UserService", function() {
   var user;
-  var basic_promise = { then: function() {} };
+  var basic_promise;
+  var basic_promise_result;
 
+  function BasicPromise() {
+    return { 
+      then: function(okFn) {
+        okFn(basic_promise_result);
+      } 
+    };
+  }
   beforeEach(function() {
-     user = UserService();
+     user = new UserService();
+     basic_promise = new BasicPromise();
+     basic_promise_result = {};
   });
 
   describe("update", function() {
@@ -26,6 +36,19 @@ describe("UserService", function() {
       user.update();
 
       expect(returned_ref.update).toHaveBeenCalledWith({ breakfast: breakfast });
+    });
+
+    it("returns the promise", function() {
+      var promise = {};
+      var ref = { update: function() { return promise; } };
+
+      basic_promise_result = ref;
+
+      var ref = { push: function() { return basic_promise; } };
+      var user = new UserService(ref);
+
+      user.create();
+      expect(user.update()).toBe(promise);
     });
   });
 
