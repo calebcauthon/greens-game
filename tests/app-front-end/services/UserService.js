@@ -16,6 +16,18 @@ describe("UserService", function() {
      basic_promise_result = {};
   });
 
+  describe("load", function() {
+    it("returns the .find promise", function() {
+      var ref = { 
+        find: function() { return basic_promise; } 
+      };
+      spyOn(ref, 'find').and.callThrough();
+      var user = new UserService(ref);
+
+      expect(user.load('user1')).toBe(basic_promise);
+    });
+  });
+
   describe("update", function() {
     it("sends user data to (ref.create)'s.update", function() {
       var returned_ref = { update: function() {} };

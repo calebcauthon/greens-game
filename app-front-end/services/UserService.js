@@ -8,8 +8,16 @@ function UserService(firebaseRef) {
     user[attr] = value;
   };
 
+  self.setData = function(obj) {
+    angular.extend(user, obj);
+  }
+
   self.get = function(attr, value) {
     return user[attr];
+  };
+
+  self.load = function(username) {
+    return firebaseRef.find();//('username', username)
   };
 
   self.create = function() {
