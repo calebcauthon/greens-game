@@ -18,7 +18,7 @@ function firebaseRef(firebaseAsyncToQ, DefaultDbReference) {
 
   self.update = function(data) {
     var execute = ref.update.bind(ref, data);
-    //return firebaseAsyncToQ(execute);
+    return firebaseAsyncToQ(execute);
   }
 
   self.push = function(data) {
