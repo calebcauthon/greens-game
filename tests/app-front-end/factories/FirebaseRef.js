@@ -19,6 +19,19 @@ describe("firebaseRef", function() {
       expect(factoryFn.push).toBeDefined();
     });
 
+    it("responds properly", function() {
+      var ref = { push: function(arb) { return arb; } };
+      var data = {};
+
+      factoryFn.setConnection(ref);
+      var result = factoryFn.push(data);
+
+      result.then(function(returnedData) {
+        expect(returnedData).toBe(data);
+      });
+
+    });
+
     it("returns the transformed $q promise", function() {
       var ref = { push: function() {} };
 
