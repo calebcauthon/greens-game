@@ -1,4 +1,5 @@
 describe("FirebaseService", function() {
+  return;
   describe("createUser", function() {
     var mock_ref;
 
@@ -46,18 +47,6 @@ describe("FirebaseService", function() {
 
       expect(user.ref).toBe(user_ref);
     });
-  });
-});
-
-describe("firebaseRef", function() {
-  var factoryFn = firebaseRef();
-
-  it("has connect fn", function() {
-    expect(factoryFn.connect).toBeDefined();
-  });
-
-  it("has push", function() {
-    expect(factoryFn.push).toBeDefined();
   });
 });
 

@@ -12,7 +12,7 @@ var dependencies = [
   'firebase',
   'ngFire'
 ];
-define(dependencies, function (require) {
+define(dependencies, function () {
     (function(){
       function IntroCtrl($scope, $templateCache, User) {
         $scope.user = User.user;
