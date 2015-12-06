@@ -19,6 +19,7 @@ module.exports = function(config) {
       'app-front-end/services/*.js',
       'app-front-end/factories/*.js',
       'app-front-end/controllers/*.js',
+      'tests/app-front-end/factories/*.js',
       'tests/app-front-end/*.js'
     ],
 
