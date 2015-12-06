@@ -1,14 +1,40 @@
 describe("UserService", function() {
   var user;
+  var basic_promise = { then: function() {} };
 
   beforeEach(function() {
      user = UserService();
   });
 
+  describe("update", function() {
+    it("sends user data to (ref.create)'s.update", function() {
+      var returned_ref = { update: function() {} };
+      spyOn(returned_ref, 'update');
+
+      var returned_promise = { 
+        then: function(okFn, notOkFn) {
+          okFn(returned_ref);
+        }
+      };
+      var ref = { push: function() { return returned_promise; } };
+      
+      var user = new UserService(ref);
+
+      var breakfast = {};
+      user.set('breakfast', breakfast);
+      user.create();
+      user.update();
+
+      expect(returned_ref.update).toHaveBeenCalledWith({ breakfast: breakfast });
+    });
+  });
+
   describe("create", function() {
-    it("sends user data to ref.push", function() {
-      var ref = { push: function() {} };
-      spyOn(ref, 'push');
+    it("sends user data to ref.update", function() {
+      var ref = { 
+        push: function() { return basic_promise; } 
+      };
+      spyOn(ref, 'push').and.callThrough();
       var user = new UserService(ref);
       var breakfast = {};
 
@@ -19,13 +45,10 @@ describe("UserService", function() {
     });
 
     it("returns the ref promise", function() {
-      var result = {};
-      var ref = { push: function() { return result; } };
+      var ref = { push: function() { return basic_promise; } };
       var user = new UserService(ref);
 
-      expect(user.create()).toBe(result);
-
-      
+      expect(user.create()).toBe(basic_promise);      
     });
   });
 });

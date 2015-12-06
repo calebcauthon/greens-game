@@ -13,7 +13,13 @@ function UserService(firebaseRef) {
   };
 
   self.create = function() {
-    return firebaseRef.push(user);
+    var promise = firebaseRef.push(user);
+
+    promise.then(function(userRef) {
+      ref = userRef;
+    });
+
+    return promise;
     /*var promise = firebaseRef.push(user);
     promise.then(function(ref) {
       ref = ref;
@@ -23,8 +29,9 @@ function UserService(firebaseRef) {
   };
 
   self.update = function() {
-    var userData = angular.extend({}, self.user, { answers: answers, ref: false });
-    FirebaseService.updateUser(self.user, answers);
+    ref.update(user);
+    /*var userData = angular.extend({}, self.user, { answers: answers, ref: false });
+    FirebaseService.updateUser(self.user, answers);*/
   };
 
   return self;
