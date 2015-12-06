@@ -1,15 +1,25 @@
 function UserService(firebaseRef) {
   var self = {};
-  var user;
+  var user = {};
+  var ref;
   var answers;
 
-  self.create = function(user) {
-    var promise = firebaseRef.push(user);
+  self.set = function(attr, value) {
+    user[attr] = value;
+  };
+
+  self.get = function(attr, value) {
+    return user[attr];
+  };
+
+  self.create = function() {
+    firebaseRef.push(user);
+    /*var promise = firebaseRef.push(user);
     promise.then(function(ref) {
-      user.ref = ref;
+      ref = ref;
     });
 
-    return promise;
+    return promise;*/
   };
 
   self.update = function() {
