@@ -19,7 +19,13 @@ describe("UserService", function() {
     });
 
     it("returns the ref promise", function() {
+      var result = {};
+      var ref = { push: function() { return result; } };
+      var user = new UserService(ref);
 
+      expect(user.create()).toBe(result);
+
+      
     });
   });
 });

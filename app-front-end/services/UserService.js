@@ -13,7 +13,7 @@ function UserService(firebaseRef) {
   };
 
   self.create = function() {
-    firebaseRef.push(user);
+    return firebaseRef.push(user);
     /*var promise = firebaseRef.push(user);
     promise.then(function(ref) {
       ref = ref;
