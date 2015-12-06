@@ -19,6 +19,15 @@ describe("firebaseRef", function() {
       expect(factoryFn.push).toBeDefined();
     });
 
+    it("returns the transformed $q promise", function() {
+      var ref = { push: function() {} };
+
+      factoryFn.setConnection(ref);
+      var result = factoryFn.push({});
+
+      expect(result.then).toBeDefined();
+    });
+
     it("sends data to ref.push", function() {
       var ref = { push: function() {} };
       spyOn(ref, 'push');
