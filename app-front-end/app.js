@@ -1,6 +1,7 @@
 var dependencies = [
   'require',
   './controllers/AppCtrl',
+  './controllers/IntroCtrl',
   './services/UserService',
   './services/QuestionService',
   './services/AnswerSheetService',
@@ -14,13 +15,7 @@ var dependencies = [
 ];
 define(dependencies, function () {
     (function(){
-      function IntroCtrl($scope, $templateCache, User) {
-        $scope.$watch('username', User.set.bind(User, 'username'));
-
-        $scope.startQuiz = function() {
-          User.create();
-        };
-      }
+      
 
       angular.module('app', ['ngRoute', 'firebase'])
       .config(function($routeProvider){
