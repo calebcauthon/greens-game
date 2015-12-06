@@ -94,7 +94,15 @@ describe("firebaseRef", function() {
     });
   });
 
-  it("has connect fn", function() {
-    expect(factoryFn.connect).toBeDefined();
+  describe("setConnection", function() {
+    it("exists", function() {
+      expect(factoryFn.setConnection).toBeDefined();
+    });
+  });
+
+  describe("connect", function() {
+    it("exists", function() {
+      expect(factoryFn.connect).toBeDefined();
+    });
   });
 });
