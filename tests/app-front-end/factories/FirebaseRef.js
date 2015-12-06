@@ -104,5 +104,16 @@ describe("firebaseRef", function() {
     it("exists", function() {
       expect(factoryFn.connect).toBeDefined();
     });
+
+    it("sets a ref on load", function() {
+      var ref = { push: function() {}};
+      spyOn(ref, 'push');
+
+      var data = {};
+      var factoryFn = firebaseRef(function(fn) { fn(); }, ref)
+
+      factoryFn.push(data);
+      expect(ref.push).toHaveBeenCalled();
+    })
   });
 });
